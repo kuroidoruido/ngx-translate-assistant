@@ -1,0 +1,44 @@
+.container {
+    padding: 1rem 2rem 2rem 2rem;
+
+    table {
+        border-spacing: 0;
+
+        td,
+        th {
+            text-align: left;
+            padding: 0 0 0 24px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.54);
+            border-spacing: 0;
+        }
+
+        thead {
+            tr {
+                height: 56px;
+                th {
+                    color: rgba(0, 0, 0, 0.54);
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                height: 48px;
+                td,
+                th {
+                    font-weight: 400;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .message {
+        text-align: center;
+        margin: auto;
+        padding-top: 8rem;
+        font-size: 120%;
+    }
+}

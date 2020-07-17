@@ -1,0 +1,59 @@
+<div class="container" *ngIf="translationState$ | async as translationState">
+    <ng-container *ngIf="translationState?.filesInfo?.length > 0; else loading">
+        <mat-accordion
+            *ngFor="let translationGroup of translationState.filesInfo; trackBy: trackedByFilesInfo"
+            class="example-headers-align"
+        >
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{ translationGroup.baseKey }}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Translation Key</th>
+                            <th *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
+                                {{ translationFile }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container
+                            *ngFor="
+                                let translateKey of translationState.keys[translationGroup.baseKey] | keyvalue;
+                                trackBy: trackedByKey
+                            "
+                        >
+                            <tr>
+                                <th>{{ translateKey.key }}</th>
+                                <td *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
+                                    <mat-form-field>
+                                        <input
+                                            matInput
+                                            type="text"
+                                            [value]="translateKey.value[translationFile]"
+                                            (keyup)="
+                                                onTranslateChange(
+                                                    translationGroup.baseKey,
+                                                    translateKey.key,
+                                                    translationFile,
+                                                    $event.target.value
+                                                )
+                                            "
+                                        />
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </ng-container>
+    <ng-template #loading>
+        <div class="message">Loading...</div>
+    </ng-template>
+</div>
