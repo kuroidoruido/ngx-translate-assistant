@@ -1,0 +1,22 @@
+{
+  "name": "ngx-translate-assistant-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build-webui": "cd ../webui && npm run build && cp dist/ngx-translate-assistant/* ../cli/lib/webui/static"
+  },
+  "author": "",
+  "bin": {
+    "ngx-translate-assistant": "./bin/ngx-translate-assistant.sh",
+    "ngx-ta": "./bin/ngx-translate-assistant.sh",
+    "ngxta": "./bin/ngx-translate-assistant.sh"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-static": "^5.0.0"
+  }
+}
