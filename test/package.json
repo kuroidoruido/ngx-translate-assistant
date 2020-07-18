@@ -10,6 +10,6 @@
     "author": "Anthony Pena <anthony.pena@outlook.fr>",
     "license": "ISC",
     "dependencies": {
-        "ngx-translate-assistant": "../cli"
+        "ngx-translate-assistant": "../"
     }
 }
