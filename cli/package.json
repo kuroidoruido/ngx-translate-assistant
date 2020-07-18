@@ -1,10 +1,11 @@
 {
   "name": "ngx-translate-assistant",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Simple devtool to help with different language files, keep them tidy and up to date.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "cd ../webui && npm run build && cp dist/ngx-translate-assistant/* ../cli/lib/webui/static"
   },
   "author": "Anthony Pena <anthony.pena@outlook.fr>",
   "bin": {
