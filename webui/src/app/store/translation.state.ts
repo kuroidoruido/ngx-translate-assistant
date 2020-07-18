@@ -25,38 +25,8 @@ export interface TranslationStateModel {
 @State<TranslationStateModel>({
     name: 'translation',
     defaults: {
-        filesInfo: [
-            /*
-            {
-                baseKey: 'form-page',
-                files: ['form-page.en.json', 'form-page.fr.json'],
-            },
-            {
-                baseKey: 'about-page',
-                files: ['about-page.en.json', 'about-page.fr.json'],
-            },
-            */
-        ],
-        keys: {
-            /*
-            'form-page': {
-                'form-page.header.title': {
-                    'form-page.en.json': 'My Form',
-                    'form-page.fr.json': 'Mon formulaire',
-                },
-                'form-page.header.sub-title': {
-                    'form-page.en.json': 'oh yeah!',
-                    'form-page.fr.json': 'Trop bien !',
-                },
-            },
-            'about-page': {
-                'about-page.header.title': {
-                    'about-page.en.json': 'About',
-                    'about-page.fr.json': 'A propos de',
-                },
-            },
-            */
-        },
+        filesInfo: [],
+        keys: {},
     },
 })
 @Injectable()

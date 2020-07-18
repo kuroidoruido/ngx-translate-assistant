@@ -1,0 +1,16 @@
+[
+    {
+        "baseKey": "form-page",
+        "files": [
+            "src/app/form/locale/form-page.en.json",
+            "src/app/form/locale/form-page.fr.json"
+        ]
+    },
+    {
+        "baseKey": "about-page",
+        "files": [
+            "src/app/about/locale/about-page.en.json",
+            "src/app/about/locale/about-page.fr.json"
+        ]
+    }
+]

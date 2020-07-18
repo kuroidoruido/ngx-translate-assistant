@@ -69460,6 +69460,412 @@ const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["Version"]('10.0.
 
 /***/ }),
 
+/***/ "./node_modules/@ngneat/hotkeys/__ivy_ngcc__/fesm2015/ngneat-hotkeys.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@ngneat/hotkeys/__ivy_ngcc__/fesm2015/ngneat-hotkeys.js ***!
+  \******************************************************************************/
+/*! exports provided: HotkeysDirective, HotkeysHelpComponent, HotkeysModule, HotkeysService, HotkeysShortcutPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HotkeysDirective", function() { return HotkeysDirective; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HotkeysHelpComponent", function() { return HotkeysHelpComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HotkeysModule", function() { return HotkeysModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HotkeysService", function() { return HotkeysService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HotkeysShortcutPipe", function() { return HotkeysShortcutPipe; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
+
+
+
+
+
+
+
+
+function HotkeysHelpComponent_div_0_Template(rf, ctx) { if (rf & 1) {
+    const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](1, "span", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "button", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function HotkeysHelpComponent_div_0_Template_button_click_3_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r3); const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](); return ctx_r2.handleDismiss(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](4, "\u2715");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](ctx_r0.title);
+} }
+function HotkeysHelpComponent_table_1_thead_1_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "thead");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](1, "tr");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](2, "th", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const hotkeyGroup_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](hotkeyGroup_r4.group);
+} }
+function HotkeysHelpComponent_table_1_tr_3_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "tr", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](1, "td", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "td", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](4, "kbd", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipe"](5, "hotkeysShortcut");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const hotkey_r8 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](hotkey_r8.description);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("innerHTML", _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](5, 2, hotkey_r8.keys), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsanitizeHtml"]);
+} }
+function HotkeysHelpComponent_table_1_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "table", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](1, HotkeysHelpComponent_table_1_thead_1_Template, 4, 1, "thead", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](2, "tbody");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](3, HotkeysHelpComponent_table_1_tr_3_Template, 6, 4, "tr", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const hotkeyGroup_r4 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", hotkeyGroup_r4.group);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngForOf", hotkeyGroup_r4.hotkeys);
+} }
+function hostPlatform() {
+    const appleDevices = ['Mac', 'iPhone', 'iPad', 'iPhone'];
+    return appleDevices.some(d => navigator.platform.includes(d)) ? 'apple' : 'pc';
+}
+function normalizeKeys(keys, platform) {
+    const lowercaseKeys = keys.toLowerCase();
+    switch (platform) {
+        case 'pc':
+            return lowercaseKeys
+                .split('.')
+                .map(k => (k === 'meta' ? 'control' : k))
+                .join('.');
+        default:
+            return keys;
+    }
+}
+
+function coerceArray(params) {
+    return Array.isArray(params) ? params : [params];
+}
+
+let HotkeysService = class HotkeysService {
+    constructor(eventManager, document) {
+        this.eventManager = eventManager;
+        this.document = document;
+        this.hotkeys = new Map();
+        this.defaults = {
+            trigger: 'keydown',
+            allowIn: [],
+            element: this.document.documentElement,
+            group: undefined,
+            description: undefined,
+            showInHelpMenu: true,
+            preventDefault: true
+        };
+        this.callbacks = [];
+    }
+    getHotkeys() {
+        return Array.from(this.hotkeys.values()).map(h => (Object.assign({}, h)));
+    }
+    getShortcuts() {
+        const hotkeys = Array.from(this.hotkeys.values());
+        const groups = [];
+        for (const hotkey of hotkeys) {
+            if (!hotkey.showInHelpMenu) {
+                continue;
+            }
+            let group = groups.find(g => g.group === hotkey.group);
+            if (!group) {
+                group = { group: hotkey.group, hotkeys: [] };
+                groups.push(group);
+            }
+            const normalizedKeys = normalizeKeys(hotkey.keys, hostPlatform());
+            group.hotkeys.push({ keys: normalizedKeys, description: hotkey.description });
+        }
+        return groups;
+    }
+    addShortcut(options) {
+        const mergedOptions = Object.assign(Object.assign({}, this.defaults), options);
+        const normalizedKeys = normalizeKeys(mergedOptions.keys, hostPlatform());
+        if (this.hotkeys.has(normalizedKeys)) {
+            console.error('Duplicated shortcut');
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(null);
+        }
+        this.hotkeys.set(normalizedKeys, mergedOptions);
+        const event = `${mergedOptions.trigger}.${normalizedKeys}`;
+        return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](observer => {
+            const handler = (e) => {
+                const hotkey = this.hotkeys.get(normalizedKeys);
+                const excludedTargets = this.getExcludedTargets(hotkey.allowIn || []);
+                const skipShortcutTrigger = excludedTargets && excludedTargets.includes(document.activeElement.nodeName);
+                if (skipShortcutTrigger) {
+                    return;
+                }
+                if (mergedOptions.preventDefault) {
+                    e.preventDefault();
+                }
+                this.callbacks.forEach(cb => cb(e, normalizedKeys, hotkey.element));
+                observer.next(e);
+            };
+            const dispose = this.eventManager.addEventListener(mergedOptions.element, event, handler);
+            return () => {
+                this.hotkeys.delete(normalizedKeys);
+                dispose();
+            };
+        });
+    }
+    removeShortcuts(hotkeys) {
+        const coercedHotkeys = coerceArray(hotkeys).map(hotkey => normalizeKeys(hotkey, hostPlatform()));
+        coercedHotkeys.forEach(hotkey => {
+            if (!this.hotkeys.has(hotkey)) {
+                console.warn(`Hotkey ${hotkey} not found`);
+                return;
+            }
+            this.hotkeys.delete(hotkey);
+        });
+    }
+    onShortcut(callback) {
+        this.callbacks.push(callback);
+        return () => (this.callbacks = this.callbacks.filter(cb => cb !== callback));
+    }
+    registerHelpModal(openHelpModalFn, helpShortcut = '') {
+        this.addShortcut({ keys: helpShortcut || 'shift.?', showInHelpMenu: false, preventDefault: false }).subscribe(e => {
+            const skipMenu = /^(input|textarea|select)$/i.test(document.activeElement.nodeName) ||
+                e.target.isContentEditable;
+            if (!skipMenu && this.hotkeys.size) {
+                openHelpModalFn();
+            }
+        });
+    }
+    getExcludedTargets(allowIn) {
+        return ['INPUT', 'SELECT', 'TEXTAREA'].filter(t => !allowIn.includes(t));
+    }
+};
+HotkeysService.ɵfac = function HotkeysService_Factory(t) { return new (t || HotkeysService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["EventManager"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_1__["DOCUMENT"])); };
+HotkeysService.ctorParameters = () => [
+    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["EventManager"] },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Inject"], args: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["DOCUMENT"],] }] }
+];
+HotkeysService.ɵprov = Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"])({ factory: function HotkeysService_Factory() { return new HotkeysService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"])(_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["EventManager"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"])(_angular_common__WEBPACK_IMPORTED_MODULE_1__["DOCUMENT"])); }, token: HotkeysService, providedIn: "root" });
+HotkeysService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([ Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_1__["DOCUMENT"]))
+], HotkeysService);
+
+let HotkeysDirective = class HotkeysDirective {
+    constructor(hotkeysService, elementRef) {
+        this.hotkeysService = hotkeysService;
+        this.elementRef = elementRef;
+        this.hotkeysOptions = {};
+        this.hotkey = new _angular_core__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"]();
+    }
+    ngOnChanges(changes) {
+        this.deleteHotkeys();
+        if (!this.hotkeys) {
+            return;
+        }
+        const hotkey = Object.assign({ keys: this.hotkeys, group: this.hotkeysGroup, description: this.hotkeysDescription }, this.hotkeysOptions);
+        this.setHotkeys(hotkey);
+    }
+    ngOnDestroy() {
+        this.deleteHotkeys();
+    }
+    deleteHotkeys() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+        this.subscription = null;
+    }
+    setHotkeys(hotkeys) {
+        const coercedHotkeys = coerceArray(hotkeys);
+        this.subscription = Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["merge"])(coercedHotkeys.map(hotkey => this.hotkeysService.addShortcut(Object.assign(Object.assign({}, hotkey), { element: this.elementRef.nativeElement }))))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["mergeAll"])())
+            .subscribe(e => this.hotkey.next(e));
+    }
+};
+HotkeysDirective.ɵfac = function HotkeysDirective_Factory(t) { return new (t || HotkeysDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](HotkeysService), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"])); };
+HotkeysDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineDirective"]({ type: HotkeysDirective, selectors: [["", "hotkeys", ""]], inputs: { hotkeysOptions: "hotkeysOptions", hotkeys: "hotkeys", hotkeysGroup: "hotkeysGroup", hotkeysDescription: "hotkeysDescription" }, outputs: { hotkey: "hotkey" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵNgOnChangesFeature"]] });
+HotkeysDirective.ctorParameters = () => [
+    { type: HotkeysService },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"] }
+];
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"])()
+], HotkeysDirective.prototype, "hotkeys", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"])()
+], HotkeysDirective.prototype, "hotkeysGroup", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"])()
+], HotkeysDirective.prototype, "hotkeysOptions", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"])()
+], HotkeysDirective.prototype, "hotkeysDescription", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Output"])()
+], HotkeysDirective.prototype, "hotkey", void 0);
+
+let HotkeysHelpComponent = class HotkeysHelpComponent {
+    constructor(hotkeysService) {
+        this.hotkeysService = hotkeysService;
+        this.title = 'Available Shortcuts';
+        this.dimiss = new _angular_core__WEBPACK_IMPORTED_MODULE_2__["EventEmitter"]();
+        this.hotkeys = this.hotkeysService.getShortcuts();
+    }
+    handleDismiss() {
+        this.dimiss.next();
+    }
+};
+HotkeysHelpComponent.ɵfac = function HotkeysHelpComponent_Factory(t) { return new (t || HotkeysHelpComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](HotkeysService)); };
+HotkeysHelpComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({ type: HotkeysHelpComponent, selectors: [["ng-component"]], inputs: { title: "title" }, outputs: { dimiss: "dimiss" }, decls: 2, vars: 2, consts: [["class", "hotkeys-help-header", 4, "ngIf"], ["class", "hotkeys-table-help", "cellspacing", "0", "width", "100%", 4, "ngFor", "ngForOf"], [1, "hotkeys-help-header"], [1, "hotkeys-help-header-title"], [1, "hotkeys-help-header-dismiss-button", 3, "click"], ["cellspacing", "0", "width", "100%", 1, "hotkeys-table-help"], [4, "ngIf"], ["class", "hotkeys-table-help-shortcut", 4, "ngFor", "ngForOf"], ["colspan", "2", 1, "hotkeys-table-help-group"], [1, "hotkeys-table-help-shortcut"], ["width", "75%", 1, "hotkeys-table-help-shortcut-description"], ["width", "25%", 1, "hotkeys-table-help-shortcut-keys"], [3, "innerHTML"]], template: function HotkeysHelpComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](0, HotkeysHelpComponent_div_0_Template, 5, 1, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](1, HotkeysHelpComponent_table_1_Template, 4, 2, "table", 1);
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.title);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngForOf", ctx.hotkeys);
+    } }, directives: function () { return [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["NgForOf"]]; }, pipes: function () { return [HotkeysShortcutPipe]; }, styles: ["[_nghost-%COMP%]   table[_ngcontent-%COMP%]{border:1px solid #e1e4e8;border-collapse:collapse;width:100%;margin-bottom:1rem;color:#212529}[_nghost-%COMP%]   th[_ngcontent-%COMP%]{background-color:#f6f8fa;border-top-left-radius:2px;border-top-right-radius:2px;border:1px solid #d1d5da;font-weight:500;font-size:14px;padding:8px 16px;border-bottom:0;text-align:left}[_nghost-%COMP%]   td[_ngcontent-%COMP%]{padding:8px 16px;border-top:1px solid #dee2e6}[_nghost-%COMP%]   kbd[_ngcontent-%COMP%]{margin-right:6px;background-color:#fafbfc;border:1px solid #d1d5da;border-bottom-color:#c6cbd1;border-radius:3px;box-shadow:inset 0 -1px 0 #c6cbd1;color:#444d56;font-size:12px;padding:3px 5px}[_nghost-%COMP%]   .hotkeys-help-shortcut-keys[_ngcontent-%COMP%]{text-align:right}[_nghost-%COMP%]   .hotkeys-help-header[_ngcontent-%COMP%]{font-size:1.25em;margin-bottom:1.25em;display:flex;flex-direction:row;justify-content:space-between;align-items:center}[_nghost-%COMP%]   .hotkeys-help-header-title[_ngcontent-%COMP%]{line-height:1.5}[_nghost-%COMP%]   .hotkeys-help-header-dismiss-button[_ngcontent-%COMP%]{border:none;font-size:18px;color:#9e9e9e;cursor:pointer}[_nghost-%COMP%]   .hotkeys-help-header-dismiss-button[_ngcontent-%COMP%]:focus{outline:0}"] });
+HotkeysHelpComponent.ctorParameters = () => [
+    { type: HotkeysService }
+];
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"])()
+], HotkeysHelpComponent.prototype, "title", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Output"])()
+], HotkeysHelpComponent.prototype, "dimiss", void 0);
+
+const symbols = {
+    shift: '&#8679;',
+    backspace: '&#9003;',
+    tab: '&#8677;',
+    space: '&#9251;',
+    left: '&#8592;',
+    right: '&#8594;',
+    up: '&#8593;',
+    down: '&#8595;',
+    enter: '&#8996;'
+};
+const appleSymbols = {
+    meta: '&#8984;',
+    altleft: '&#8997;',
+    control: '&#8963;',
+    escape: '&#9099;'
+};
+const pcSymbols = {
+    control: 'Ctrl',
+    altleft: 'Alt',
+    escape: 'Esc'
+};
+let HotkeysShortcutPipe = class HotkeysShortcutPipe {
+    constructor() {
+        const platform = hostPlatform();
+        this.symbols = this.getPlatformSymbols(platform);
+    }
+    transform(value, separator = ' + ') {
+        if (!value) {
+            return '';
+        }
+        return value
+            .split('.')
+            .map(c => c.toLowerCase())
+            .map(c => this.symbols[c] || c)
+            .join(separator);
+    }
+    getPlatformSymbols(platform) {
+        return platform === 'apple' ? Object.assign(Object.assign({}, symbols), appleSymbols) : Object.assign(Object.assign({}, symbols), pcSymbols);
+    }
+};
+HotkeysShortcutPipe.ɵfac = function HotkeysShortcutPipe_Factory(t) { return new (t || HotkeysShortcutPipe)(); };
+HotkeysShortcutPipe.ɵpipe = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefinePipe"]({ name: "hotkeysShortcut", type: HotkeysShortcutPipe, pure: true });
+
+let HotkeysModule = class HotkeysModule {
+};
+HotkeysModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineNgModule"]({ type: HotkeysModule });
+HotkeysModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ factory: function HotkeysModule_Factory(t) { return new (t || HotkeysModule)(); }, imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]]] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵsetClassMetadata"](HotkeysService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"],
+        args: [{ providedIn: 'root' }]
+    }], function () { return [{ type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["EventManager"] }, { type: undefined, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Inject"],
+                args: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["DOCUMENT"]]
+            }] }]; }, null); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵsetClassMetadata"](HotkeysDirective, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Directive"],
+        args: [{
+                selector: '[hotkeys]'
+            }]
+    }], function () { return [{ type: HotkeysService }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"] }]; }, { hotkeysOptions: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"]
+        }], hotkey: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Output"]
+        }], hotkeys: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"]
+        }], hotkeysGroup: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"]
+        }], hotkeysDescription: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"]
+        }] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵsetClassMetadata"](HotkeysHelpComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"],
+        args: [{
+                template: "<div *ngIf=\"title\" class=\"hotkeys-help-header\">\n  <span class=\"hotkeys-help-header-title\">{{ title }}</span>\n  <button class=\"hotkeys-help-header-dismiss-button\" (click)=\"handleDismiss()\">&#10005;</button>\n</div>\n\n<table class=\"hotkeys-table-help\" cellspacing=\"0\" width=\"100%\" *ngFor=\"let hotkeyGroup of hotkeys\">\n  <thead *ngIf=\"hotkeyGroup.group\">\n    <tr>\n      <th class=\"hotkeys-table-help-group\" colspan=\"2\">{{ hotkeyGroup.group }}</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr class=\"hotkeys-table-help-shortcut\" *ngFor=\"let hotkey of hotkeyGroup.hotkeys\">\n      <td class=\"hotkeys-table-help-shortcut-description\" width=\"75%\">{{ hotkey.description }}</td>\n      <td class=\"hotkeys-table-help-shortcut-keys\" width=\"25%\">\n        <kbd [innerHTML]=\"hotkey.keys | hotkeysShortcut\"></kbd>\n      </td>\n    </tr>\n  </tbody>\n</table>\n",
+                styles: [":host table{border:1px solid #e1e4e8;border-collapse:collapse;width:100%;margin-bottom:1rem;color:#212529}:host th{background-color:#f6f8fa;border-top-left-radius:2px;border-top-right-radius:2px;border:1px solid #d1d5da;font-weight:500;font-size:14px;padding:8px 16px;border-bottom:0;text-align:left}:host td{padding:8px 16px;border-top:1px solid #dee2e6}:host kbd{margin-right:6px;background-color:#fafbfc;border:1px solid #d1d5da;border-bottom-color:#c6cbd1;border-radius:3px;box-shadow:inset 0 -1px 0 #c6cbd1;color:#444d56;font-size:12px;padding:3px 5px}:host .hotkeys-help-shortcut-keys{text-align:right}:host .hotkeys-help-header{font-size:1.25em;margin-bottom:1.25em;display:flex;flex-direction:row;justify-content:space-between;align-items:center}:host .hotkeys-help-header-title{line-height:1.5}:host .hotkeys-help-header-dismiss-button{border:none;font-size:18px;color:#9e9e9e;cursor:pointer}:host .hotkeys-help-header-dismiss-button:focus{outline:0}"]
+            }]
+    }], function () { return [{ type: HotkeysService }]; }, { title: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"]
+        }], dimiss: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Output"]
+        }] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵsetClassMetadata"](HotkeysShortcutPipe, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Pipe"],
+        args: [{
+                name: 'hotkeysShortcut'
+            }]
+    }], function () { return []; }, null); })();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsetNgModuleScope"](HotkeysModule, { declarations: function () { return [HotkeysDirective, HotkeysHelpComponent, HotkeysShortcutPipe]; }, imports: function () { return [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]]; }, exports: function () { return [HotkeysDirective, HotkeysHelpComponent, HotkeysShortcutPipe]; } }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵsetClassMetadata"](HotkeysModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"],
+        args: [{
+                declarations: [HotkeysDirective, HotkeysHelpComponent, HotkeysShortcutPipe],
+                entryComponents: [HotkeysHelpComponent],
+                imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]],
+                exports: [HotkeysDirective, HotkeysHelpComponent, HotkeysShortcutPipe]
+            }]
+    }], null, null); })();
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+//# sourceMappingURL=ngneat-hotkeys.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@ngxs/devtools-plugin/__ivy_ngcc__/fesm2015/ngxs-devtools-plugin.js":
 /*!******************************************************************************************!*\
   !*** ./node_modules/@ngxs/devtools-plugin/__ivy_ngcc__/fesm2015/ngxs-devtools-plugin.js ***!

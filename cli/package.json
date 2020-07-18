@@ -1,20 +1,20 @@
 {
-  "name": "ngx-translate-assistant-cli",
+  "name": "ngx-translate-assistant",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple devtool to help with different language files, keep them tidy and up to date.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "build-webui": "cd ../webui && npm run build && cp dist/ngx-translate-assistant/* ../cli/lib/webui/static"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
-  "author": "",
+  "author": "Anthony Pena <anthony.pena@outlook.fr>",
   "bin": {
-    "ngx-translate-assistant": "./bin/ngx-translate-assistant.sh",
-    "ngx-ta": "./bin/ngx-translate-assistant.sh",
-    "ngxta": "./bin/ngx-translate-assistant.sh"
+    "ngx-translate-assistant": "./bin/ngx-translate-assistant",
+    "ngx-ta": "./bin/ngx-translate-assistant",
+    "ngxta": "./bin/ngx-translate-assistant"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "decache": "^4.6.0",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
     "koa-static": "^5.0.0"
