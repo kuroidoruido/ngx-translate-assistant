@@ -4,7 +4,12 @@ export class LoadTranslationState {
 
 export class ChangeTranslateKey {
     static readonly type = '[Translation] change key';
-    constructor(public baseKey: string, public key: string, public file: string, public newValue: string) {}
+    constructor(public groupName: string, public key: string, public file: string, public newValue: string) {}
+}
+
+export class RemoveTranslateKey {
+    static readonly type = '[Translation] remove key';
+    constructor(public groupName: string, public key: string) {}
 }
 
 export class SaveTranslationState {

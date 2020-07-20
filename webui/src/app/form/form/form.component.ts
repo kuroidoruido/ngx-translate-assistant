@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { ChangeTranslateKey } from 'src/app/store/translation.actions';
+import { ChangeTranslateKey, RemoveTranslateKey } from 'src/app/store/translation.actions';
 import { TranslationState, TranslationStateModel, TranslationFilesInfo } from 'src/app/store/translation.state';
 
 @Component({
@@ -17,6 +17,10 @@ export class FormComponent {
 
     onTranslateChange(baseKey: string, key: string, file: string, newValue: string): void {
         this.store.dispatch(new ChangeTranslateKey(baseKey, key, file, newValue));
+    }
+
+    removeKey(groupName: string, key: string): void {
+        this.store.dispatch(new RemoveTranslateKey(groupName, key));
     }
 
     trackedByFilesInfo(fileInfo: TranslationFilesInfo): string {

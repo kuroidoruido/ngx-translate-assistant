@@ -4,7 +4,12 @@ import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
 import { produce } from 'immer';
 import { first } from 'rxjs/operators';
 
-import { ChangeTranslateKey, LoadTranslationState, SaveTranslationState } from './translation.actions';
+import {
+    ChangeTranslateKey,
+    LoadTranslationState,
+    SaveTranslationState,
+    RemoveTranslateKey,
+} from './translation.actions';
 
 export interface TranslationFilesInfo {
     groupName: string;
@@ -47,7 +52,16 @@ export class TranslationState implements NgxsOnInit {
     onChangeTranslateKey(ctx: StateContext<TranslationStateModel>, action: ChangeTranslateKey): void {
         ctx.setState(
             produce(ctx.getState(), (draft) => {
-                draft.keys[action.baseKey][action.key][action.file] = action.newValue;
+                draft.keys[action.groupName][action.key][action.file] = action.newValue;
+            })
+        );
+    }
+
+    @Action(RemoveTranslateKey)
+    onRemoveTranslateKey(ctx: StateContext<TranslationStateModel>, action: RemoveTranslateKey): void {
+        ctx.setState(
+            produce(ctx.getState(), (draft) => {
+                delete draft.keys[action.groupName][action.key];
             })
         );
     }
