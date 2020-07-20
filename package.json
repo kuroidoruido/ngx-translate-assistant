@@ -1,6 +1,6 @@
 {
   "name": "ngx-translate-assistant",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Simple devtool to help with different language files, keep them tidy and up to date.",
   "main": "lib/index.js",
   "repository": {
