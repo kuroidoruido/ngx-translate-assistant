@@ -7,7 +7,8 @@ import { first } from 'rxjs/operators';
 import { ChangeTranslateKey, LoadTranslationState, SaveTranslationState } from './translation.actions';
 
 export interface TranslationFilesInfo {
-    baseKey: string;
+    groupName: string;
+    baseKey?: string;
     files: string[];
 }
 

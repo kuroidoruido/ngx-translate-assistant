@@ -1,5 +1,6 @@
 [
     {
+        "groupName": "Form page",
         "baseKey": "form-page",
         "files": [
             "src/app/form/locale/form-page.en.json",
@@ -7,7 +8,7 @@
         ]
     },
     {
-        "baseKey": "about-page",
+        "groupName": "About page",
         "files": [
             "src/app/about/locale/about-page.en.json",
             "src/app/about/locale/about-page.fr.json"

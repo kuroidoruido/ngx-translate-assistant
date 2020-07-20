@@ -9,7 +9,7 @@ Simple devtool to help with different language files, keep them tidy and up to d
 ```json
 {
     "scripts": {
-        "ngxta": "ngxta"
+        "edit-translate": "ngxta"
     }
 }
 ```
@@ -17,6 +17,7 @@ Simple devtool to help with different language files, keep them tidy and up to d
 ```json
 [
     {
+        "groupName": "Form page",
         "baseKey": "form-page",
         "files": [
             "src/app/form/locale/form-page.en.json",
@@ -24,7 +25,7 @@ Simple devtool to help with different language files, keep them tidy and up to d
         ]
     },
     {
-        "baseKey": "about-page",
+        "groupName": "About page",
         "files": [
             "src/app/about/locale/about-page.en.json",
             "src/app/about/locale/about-page.fr.json"
@@ -32,5 +33,6 @@ Simple devtool to help with different language files, keep them tidy and up to d
     }
 ]
 ```
+Note: this is an example about what you can do
 - start it: npm run ngxta
 - go to http://localhost:3578

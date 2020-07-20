@@ -7,7 +7,7 @@
             <mat-expansion-panel [expanded]="true">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        {{ translationGroup.baseKey }}
+                        {{ translationGroup.groupName }}
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
@@ -23,12 +23,18 @@
                     <tbody>
                         <ng-container
                             *ngFor="
-                                let translateKey of translationState.keys[translationGroup.baseKey] | keyvalue;
+                                let translateKey of translationState.keys[translationGroup.groupName] | keyvalue;
                                 trackBy: trackedByKey
                             "
                         >
                             <tr>
-                                <th>{{ translateKey.key }}</th>
+                                <th>
+                                    {{
+                                        translationGroup.baseKey
+                                            ? translationGroup.baseKey + '.' + translateKey.key
+                                            : translateKey.key
+                                    }}
+                                </th>
                                 <td *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
                                     <mat-form-field>
                                         <input
@@ -37,7 +43,7 @@
                                             [value]="translateKey.value[translationFile]"
                                             (keyup)="
                                                 onTranslateChange(
-                                                    translationGroup.baseKey,
+                                                    translationGroup.groupName,
                                                     translateKey.key,
                                                     translationFile,
                                                     $event.target.value
