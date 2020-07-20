@@ -9,6 +9,7 @@ import {
     LoadTranslationState,
     SaveTranslationState,
     RemoveTranslateKey,
+    AddTranslateKey,
 } from './translation.actions';
 
 export interface TranslationFilesInfo {
@@ -53,6 +54,15 @@ export class TranslationState implements NgxsOnInit {
         ctx.setState(
             produce(ctx.getState(), (draft) => {
                 draft.keys[action.groupName][action.key][action.file] = action.newValue;
+            })
+        );
+    }
+
+    @Action(AddTranslateKey)
+    onAddTranslateKey(ctx: StateContext<TranslationStateModel>, action: AddTranslateKey): void {
+        ctx.setState(
+            produce(ctx.getState(), (draft) => {
+                draft.keys[action.groupName][action.key] = action.translations;
             })
         );
     }

@@ -7,6 +7,11 @@ export class ChangeTranslateKey {
     constructor(public groupName: string, public key: string, public file: string, public newValue: string) {}
 }
 
+export class AddTranslateKey {
+    static readonly type = '[Translation] add key';
+    constructor(public groupName: string, public key: string, public translations: { [file: string]: string }) {}
+}
+
 export class RemoveTranslateKey {
     static readonly type = '[Translation] remove key';
     constructor(public groupName: string, public key: string) {}

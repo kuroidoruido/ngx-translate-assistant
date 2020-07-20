@@ -10,62 +10,95 @@
                         {{ translationGroup.groupName }}
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="2">Translation Key</th>
-                            <th *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
-                                {{ translationFile }}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <ng-container
-                            *ngFor="
-                                let translateKey of translationState.keys[translationGroup.groupName] | keyvalue;
-                                trackBy: trackedByKey
-                            "
-                        >
+                <form
+                    *ngIf="newKeysForms[translationGroup.groupName]"
+                    [formGroup]="newKeysForms[translationGroup.groupName]"
+                    (submit)="addNewKey(translationGroup.groupName)"
+                >
+                    <table>
+                        <thead>
                             <tr>
-                                <th>
-                                    {{
-                                        translationGroup.baseKey
-                                            ? translationGroup.baseKey + '.' + translateKey.key
-                                            : translateKey.key
-                                    }}
+                                <th colspan="2">Translation Key</th>
+                                <th *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
+                                    {{ translationFile }}
                                 </th>
-                                <td>
-                                    <button
-                                        mat-icon-button
-                                        color="primary"
-                                        aria-label="Remove this translate key"
-                                        (click)="removeKey(translationGroup.groupName, translateKey.key)"
-                                    >
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                </td>
-                                <td *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container
+                                *ngFor="
+                                    let translateKey of translationState.keys[translationGroup.groupName] | keyvalue;
+                                    trackBy: trackedByKey
+                                "
+                            >
+                                <tr>
+                                    <th>
+                                        {{
+                                            translationGroup.baseKey
+                                                ? translationGroup.baseKey + '.' + translateKey.key
+                                                : translateKey.key
+                                        }}
+                                    </th>
+                                    <td>
+                                        <button
+                                            mat-icon-button
+                                            color="primary"
+                                            aria-label="Remove this translate key"
+                                            (click)="removeKey(translationGroup.groupName, translateKey.key)"
+                                        >
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </td>
+                                    <td *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
+                                        <mat-form-field>
+                                            <input
+                                                matInput
+                                                type="text"
+                                                [value]="translateKey.value[translationFile]"
+                                                (keyup)="
+                                                    onTranslateChange(
+                                                        translationGroup.groupName,
+                                                        translateKey.key,
+                                                        translationFile,
+                                                        $event.target.value
+                                                    )
+                                                "
+                                            />
+                                        </mat-form-field>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
                                     <mat-form-field>
-                                        <input
-                                            matInput
-                                            type="text"
-                                            [value]="translateKey.value[translationFile]"
-                                            (keyup)="
-                                                onTranslateChange(
-                                                    translationGroup.groupName,
-                                                    translateKey.key,
-                                                    translationFile,
-                                                    $event.target.value
-                                                )
-                                            "
-                                        />
+                                        <input matInput type="text" placeholder="Key name" formControlName="key" />
                                     </mat-form-field>
                                 </td>
+                                <ng-container formGroupName="translations">
+                                    <td *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
+                                        <mat-form-field>
+                                            <input
+                                                matInput
+                                                type="text"
+                                                [placeholder]="'Translation for ' + translationFile"
+                                                [formControlName]="translationFile"
+                                            />
+                                        </mat-form-field>
+                                    </td>
+                                </ng-container>
+                                <td>
+                                    <button mat-button aria-label="Add this new translate key" type="submit">
+                                        Add
+                                    </button>
+                                </td>
                             </tr>
-                        </ng-container>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </form>
             </mat-expansion-panel>
         </mat-accordion>
     </ng-container>
