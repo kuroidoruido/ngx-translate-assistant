@@ -41,14 +41,14 @@
                                 "
                             >
                                 <tr>
-                                    <th>
+                                    <th class="cell-key">
                                         {{
                                             translationGroup.baseKey
                                                 ? translationGroup.baseKey + '.' + translateKey.key
                                                 : translateKey.key
                                         }}
                                     </th>
-                                    <td>
+                                    <td class="cell-actions">
                                         <button
                                             mat-icon-button
                                             color="primary"
@@ -58,7 +58,10 @@
                                             <mat-icon>delete</mat-icon>
                                         </button>
                                     </td>
-                                    <td *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
+                                    <td
+                                        class="cell-translation"
+                                        *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile"
+                                    >
                                         <mat-form-field>
                                             <input
                                                 matInput
@@ -98,7 +101,7 @@
                                         </mat-form-field>
                                     </td>
                                 </ng-container>
-                                <td>
+                                <td class="cell-actions">
                                     <button mat-button aria-label="Add this new translate key" type="submit">
                                         Add
                                     </button>
