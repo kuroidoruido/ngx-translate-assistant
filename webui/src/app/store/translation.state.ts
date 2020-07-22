@@ -10,6 +10,7 @@ import {
     SaveTranslationState,
     RemoveTranslateKey,
     AddTranslateKey,
+    AddTranslateFile,
 } from './translation.actions';
 
 export interface TranslationFilesInfo {
@@ -72,6 +73,18 @@ export class TranslationState implements NgxsOnInit {
         ctx.setState(
             produce(ctx.getState(), (draft) => {
                 delete draft.keys[action.groupName][action.key];
+            })
+        );
+    }
+
+    @Action(AddTranslateFile)
+    onAddTranslateFile(ctx: StateContext<TranslationStateModel>, action: AddTranslateFile): void {
+        ctx.setState(
+            produce(ctx.getState(), (draft) => {
+                for (const [key, values] of Object.entries(draft.keys[action.groupName])) {
+                    values[action.file] = '';
+                }
+                draft.filesInfo.find((file) => file.groupName === action.groupName).files.push(action.file);
             })
         );
     }

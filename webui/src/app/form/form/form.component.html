@@ -22,7 +22,15 @@
                                 <th *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
                                     {{ translationFile }}
                                 </th>
-                                <th></th>
+                                <th>
+                                    <button
+                                        mat-button
+                                        aria-label="Add a new file"
+                                        (click)="showCreateFile(translationGroup.groupName)"
+                                    >
+                                        Add...
+                                    </button>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
