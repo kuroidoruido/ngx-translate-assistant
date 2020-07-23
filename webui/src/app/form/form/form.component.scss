@@ -52,3 +52,27 @@
         font-size: 120%;
     }
 }
+
+mat-form-field {
+    &:not(.missing-translation) {
+        mat-hint.error-hint {
+            display: none;
+        }
+    }
+    &.missing-translation {
+        ::ng-deep {
+            .mat-form-field-underline {
+                .mat-form-field-ripple {
+                    background-color: rgb(244, 67, 54);
+                }
+            }
+        }
+        input {
+            caret-color: #f44336;
+            border: 1px solid #f44336;
+        }
+        mat-hint.error-hint {
+            color: red;
+        }
+    }
+}

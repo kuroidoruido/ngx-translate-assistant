@@ -62,11 +62,13 @@
                                         class="cell-translation"
                                         *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile"
                                     >
-                                        <mat-form-field>
+                                        <mat-form-field
+                                            [ngClass]="{ 'missing-translation': !translateKey.value[translationFile] }"
+                                        >
                                             <input
                                                 matInput
                                                 type="text"
-                                                [value]="translateKey.value[translationFile]"
+                                                [value]="translateKey.value[translationFile] || ''"
                                                 (keyup)="
                                                     onTranslateChange(
                                                         translationGroup.groupName,
@@ -76,6 +78,7 @@
                                                     )
                                                 "
                                             />
+                                            <mat-hint class="error-hint">Missing translation.</mat-hint>
                                         </mat-form-field>
                                     </td>
                                     <td></td>

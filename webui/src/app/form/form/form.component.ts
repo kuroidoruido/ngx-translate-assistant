@@ -70,7 +70,7 @@ export class FormComponent {
 
             dialogRef.afterClosed().subscribe((result) => {
                 if (result) {
-                this.store.dispatch(new AddTranslateFile(groupName, result));
+                    this.store.dispatch(new AddTranslateFile(groupName, result));
                 }
             });
         });
