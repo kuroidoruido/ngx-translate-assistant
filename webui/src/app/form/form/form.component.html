@@ -51,12 +51,21 @@
                                     <td class="cell-actions">
                                         <button
                                             mat-icon-button
-                                            color="primary"
-                                            aria-label="Remove this translate key"
-                                            (click)="removeKey(translationGroup.groupName, translateKey.key)"
+                                            [matMenuTriggerFor]="menu"
+                                            [aria-label]="'Actions on ' + translateKey.key"
                                         >
-                                            <mat-icon>delete</mat-icon>
+                                            <mat-icon>more_vert</mat-icon>
                                         </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button
+                                                mat-menu-item
+                                                aria-label="Remove this translate key"
+                                                (click)="removeKey(translationGroup.groupName, translateKey.key)"
+                                            >
+                                                <mat-icon color="primary">delete</mat-icon>
+                                                <span>Remove</span>
+                                            </button>
+                                        </mat-menu>
                                     </td>
                                     <td
                                         class="cell-translation"
