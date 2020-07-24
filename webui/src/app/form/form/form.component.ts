@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject, combineLatest, of } from 'rxjs';
+import { filter, first, map } from 'rxjs/operators';
 
 import {
     ChangeTranslateKey,
@@ -16,7 +17,28 @@ import {
 import { TranslationState, TranslationStateModel, TranslationFilesInfo } from 'src/app/store/translation.state';
 
 import { AddFileDialogComponent } from '../add-file-dialog/add-file-dialog.component';
-import { first } from 'rxjs/operators';
+import produce from 'immer';
+
+function toFilteredState(state: TranslationStateModel, search: string): TranslationStateModel {
+    return produce(state, (draft) => {
+        for (const [groupName, group] of Object.entries(draft.keys)) {
+            for (const [key, values] of Object.entries(group)) {
+                if (!key.toLocaleLowerCase().includes(search)) {
+                    let valueMatch = false;
+                    for (const [file, value] of Object.entries(values)) {
+                        if ((value || '').toLocaleLowerCase().includes(search)) {
+                            valueMatch = true;
+                            break;
+                        }
+                    }
+                    if (!valueMatch) {
+                        delete draft.keys[groupName][key];
+                    }
+                }
+            }
+        }
+    });
+}
 
 @Component({
     selector: 'app-form',
@@ -26,11 +48,16 @@ import { first } from 'rxjs/operators';
 export class FormComponent {
     @Select(TranslationState) translationState$: Observable<TranslationStateModel>;
 
+    search$ = new ReplaySubject<string>(1);
+    filteredState$ = combineLatest([this.translationState$, this.search$.pipe(map((s) => s.toLocaleLowerCase()))]).pipe(
+        map(([state, search]) => toFilteredState(state, search))
+    );
     newKeysForms: { [groupName: string]: FormGroup } = {};
     isEditingKey: { [key: string]: boolean } = {};
     isEditingFile: { [file: string]: boolean } = {};
 
     constructor(private store: Store, public dialog: MatDialog) {
+        this.search$.next('');
         this.translationState$.subscribe((state) => {
             this.newKeysForms = {};
             for (const fileInfo of state.filesInfo) {

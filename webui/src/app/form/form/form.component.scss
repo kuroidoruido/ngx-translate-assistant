@@ -1,6 +1,14 @@
 .container {
     padding: 1rem 2rem 2rem 2rem;
 
+    mat-card {
+        margin-bottom: 1rem;
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+
     table {
         border-spacing: 0;
         width: 100%;
@@ -18,9 +26,6 @@
                     position: absolute;
                     right: 0;
                     top: 0.5em;
-                }
-                mat-form-field {
-                    width: 100%;
                 }
             }
         }
@@ -43,9 +48,6 @@
                 th {
                     font-weight: 400;
                     font-size: 14px;
-                    mat-form-field {
-                        width: 100%;
-                    }
                 }
                 th.cell-key {
                     width: 15vw;

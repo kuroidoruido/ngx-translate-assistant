@@ -1,5 +1,19 @@
-<div class="container" *ngIf="translationState$ | async as translationState">
+<div class="container" *ngIf="filteredState$ | async as translationState">
     <ng-container *ngIf="translationState?.filesInfo?.length > 0; else loading">
+        <mat-card>
+            <mat-card-title>Filter keys/values</mat-card-title>
+            <mat-card-content>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Enter key, key part, value or value part"
+                        type="text"
+                        [value]="search$ | async"
+                        (keyup)="search$.next($event.target.value)"
+                    />
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
         <mat-accordion
             *ngFor="let translationGroup of translationState.filesInfo; trackBy: trackedByFilesInfo"
             class="example-headers-align"

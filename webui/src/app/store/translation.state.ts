@@ -25,7 +25,7 @@ export interface TranslationFilesInfo {
 export interface TranslationStateModel {
     filesInfo: TranslationFilesInfo[];
     keys: {
-        [baseKey: string]: {
+        [groupName: string]: {
             [key: string]: {
                 [lang: string]: string;
             };
