@@ -11,6 +11,15 @@
             padding: 0 0 0 24px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.54);
             border-spacing: 0;
+
+            &.cell-with-menu {
+                position: relative;
+                button {
+                    position: absolute;
+                    right: 0;
+                    top: 0.5em;
+                }
+            }
         }
 
         thead {
@@ -37,9 +46,6 @@
                 }
                 th.cell-key {
                     width: 15vw;
-                }
-                td.cell-actions {
-                    width: 41px;
                 }
             }
         }

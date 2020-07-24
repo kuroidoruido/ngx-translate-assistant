@@ -10,6 +10,7 @@ import {
     AddTranslateKey,
     AddTranslateFile,
     RenameTranslateKey,
+    RemoveTranslateFile,
 } from 'src/app/store/translation.actions';
 import { TranslationState, TranslationStateModel, TranslationFilesInfo } from 'src/app/store/translation.state';
 
@@ -91,6 +92,10 @@ export class FormComponent {
                 }
             });
         });
+    }
+
+    removeFile(groupName: string, file: string): void {
+        this.store.dispatch(new RemoveTranslateFile(groupName, file));
     }
 
     trackedByFilesInfo(fileInfo: TranslationFilesInfo): string {

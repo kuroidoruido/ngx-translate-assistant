@@ -18,9 +18,29 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">Translation Key</th>
-                                <th *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile">
+                                <th>Translation Key</th>
+                                <th
+                                    class="cell-with-menu"
+                                    *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile"
+                                >
                                     {{ translationFile }}
+                                    <button
+                                        mat-icon-button
+                                        [matMenuTriggerFor]="menu"
+                                        [aria-label]="'Actions on ' + translationFile"
+                                    >
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button
+                                            mat-menu-item
+                                            aria-label="Remove this translate file"
+                                            (click)="removeFile(translationGroup.groupName, translationFile)"
+                                        >
+                                            <mat-icon color="primary">delete</mat-icon>
+                                            <span>Remove</span>
+                                        </button>
+                                    </mat-menu>
                                 </th>
                                 <th>
                                     <button
@@ -41,7 +61,7 @@
                                 "
                             >
                                 <tr>
-                                    <th class="cell-key">
+                                    <th class="cell-key cell-with-menu">
                                         <ng-template
                                             [ngIf]="isEditingKey[translationGroup.baseKey + '.' + translateKey.key]"
                                             [ngIfElse]="showKey"
@@ -73,12 +93,6 @@
                                                     ? translationGroup.baseKey + '.' + translateKey.key
                                                     : translateKey.key
                                             }}
-                                        </ng-template>
-                                    </th>
-                                    <td class="cell-actions">
-                                        <ng-template
-                                            [ngIf]="!isEditingKey[translationGroup.baseKey + '.' + translateKey.key]"
-                                        >
                                             <button
                                                 mat-icon-button
                                                 [matMenuTriggerFor]="menu"
@@ -107,7 +121,7 @@
                                                 </button>
                                             </mat-menu>
                                         </ng-template>
-                                    </td>
+                                    </th>
                                     <td
                                         class="cell-translation"
                                         *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile"
@@ -137,7 +151,7 @@
                         </tbody>
                         <tbody>
                             <tr>
-                                <td colspan="2">
+                                <td>
                                     <mat-form-field>
                                         <input matInput type="text" placeholder="Key name" formControlName="key" />
                                     </mat-form-field>
