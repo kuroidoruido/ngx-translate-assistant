@@ -12,6 +12,11 @@ export class AddTranslateKey {
     constructor(public groupName: string, public key: string, public translations: { [file: string]: string }) {}
 }
 
+export class RenameTranslateKey {
+    static readonly type = '[Translation] rename key';
+    constructor(public groupName: string, public oldKey: string, public newKey: string) {}
+}
+
 export class RemoveTranslateKey {
     static readonly type = '[Translation] remove key';
     constructor(public groupName: string, public key: string) {}

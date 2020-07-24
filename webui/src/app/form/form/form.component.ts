@@ -9,6 +9,7 @@ import {
     RemoveTranslateKey,
     AddTranslateKey,
     AddTranslateFile,
+    RenameTranslateKey,
 } from 'src/app/store/translation.actions';
 import { TranslationState, TranslationStateModel, TranslationFilesInfo } from 'src/app/store/translation.state';
 
@@ -24,6 +25,7 @@ export class FormComponent {
     @Select(TranslationState) translationState$: Observable<TranslationStateModel>;
 
     newKeysForms: { [groupName: string]: FormGroup } = {};
+    isEditingKey: { [key: string]: boolean } = {};
 
     constructor(private store: Store, public dialog: MatDialog) {
         this.translationState$.subscribe((state) => {
@@ -42,6 +44,21 @@ export class FormComponent {
 
     onTranslateChange(baseKey: string, key: string, file: string, newValue: string): void {
         this.store.dispatch(new ChangeTranslateKey(baseKey, key, file, newValue));
+    }
+
+    enableRenameKey(baseKey: string | undefined, key: string): void {
+        this.isEditingKey[baseKey + '.' + key] = true;
+    }
+
+    disableRenameKey(baseKey: string | undefined, key: string): void {
+        this.isEditingKey[baseKey + '.' + key] = false;
+    }
+
+    renameKey(groupName: string, baseKey: string, oldKey: string, newKey: string, event: KeyboardEvent): void {
+        event.stopPropagation();
+        event.preventDefault();
+        this.store.dispatch(new RenameTranslateKey(groupName, oldKey, newKey));
+        this.disableRenameKey(baseKey, oldKey);
     }
 
     removeKey(groupName: string, key: string): void {

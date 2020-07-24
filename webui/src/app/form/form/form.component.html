@@ -42,30 +42,71 @@
                             >
                                 <tr>
                                     <th class="cell-key">
-                                        {{
-                                            translationGroup.baseKey
-                                                ? translationGroup.baseKey + '.' + translateKey.key
-                                                : translateKey.key
-                                        }}
+                                        <ng-template
+                                            [ngIf]="isEditingKey[translationGroup.baseKey + '.' + translateKey.key]"
+                                            [ngIfElse]="showKey"
+                                        >
+                                            <mat-form-field>
+                                                <input
+                                                    matInput
+                                                    type="text"
+                                                    [value]="translateKey.key || ''"
+                                                    (keydown.enter)="
+                                                        renameKey(
+                                                            translationGroup.groupName,
+                                                            translationGroup.baseKey,
+                                                            translateKey.key,
+                                                            $event.target.value,
+                                                            $event
+                                                        )
+                                                    "
+                                                    (keyup.escape)="
+                                                        disableRenameKey(translationGroup.baseKey, translateKey.key)
+                                                    "
+                                                />
+                                                <mat-hint>Press enter to save, escape to cancel.</mat-hint>
+                                            </mat-form-field>
+                                        </ng-template>
+                                        <ng-template #showKey>
+                                            {{
+                                                translationGroup.baseKey
+                                                    ? translationGroup.baseKey + '.' + translateKey.key
+                                                    : translateKey.key
+                                            }}
+                                        </ng-template>
                                     </th>
                                     <td class="cell-actions">
-                                        <button
-                                            mat-icon-button
-                                            [matMenuTriggerFor]="menu"
-                                            [aria-label]="'Actions on ' + translateKey.key"
+                                        <ng-template
+                                            [ngIf]="!isEditingKey[translationGroup.baseKey + '.' + translateKey.key]"
                                         >
-                                            <mat-icon>more_vert</mat-icon>
-                                        </button>
-                                        <mat-menu #menu="matMenu">
                                             <button
-                                                mat-menu-item
-                                                aria-label="Remove this translate key"
-                                                (click)="removeKey(translationGroup.groupName, translateKey.key)"
+                                                mat-icon-button
+                                                [matMenuTriggerFor]="menu"
+                                                [aria-label]="'Actions on ' + translateKey.key"
                                             >
-                                                <mat-icon color="primary">delete</mat-icon>
-                                                <span>Remove</span>
+                                                <mat-icon>more_vert</mat-icon>
                                             </button>
-                                        </mat-menu>
+                                            <mat-menu #menu="matMenu">
+                                                <button
+                                                    mat-menu-item
+                                                    aria-label="Rename this translate key"
+                                                    (click)="
+                                                        enableRenameKey(translationGroup.baseKey, translateKey.key)
+                                                    "
+                                                >
+                                                    <mat-icon color="primary">edit</mat-icon>
+                                                    <span>Rename</span>
+                                                </button>
+                                                <button
+                                                    mat-menu-item
+                                                    aria-label="Remove this translate key"
+                                                    (click)="removeKey(translationGroup.groupName, translateKey.key)"
+                                                >
+                                                    <mat-icon color="primary">delete</mat-icon>
+                                                    <span>Remove</span>
+                                                </button>
+                                            </mat-menu>
+                                        </ng-template>
                                     </td>
                                     <td
                                         class="cell-translation"
