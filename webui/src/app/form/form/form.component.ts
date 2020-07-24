@@ -11,6 +11,7 @@ import {
     AddTranslateFile,
     RenameTranslateKey,
     RemoveTranslateFile,
+    RenameTranslateFile,
 } from 'src/app/store/translation.actions';
 import { TranslationState, TranslationStateModel, TranslationFilesInfo } from 'src/app/store/translation.state';
 
@@ -27,6 +28,7 @@ export class FormComponent {
 
     newKeysForms: { [groupName: string]: FormGroup } = {};
     isEditingKey: { [key: string]: boolean } = {};
+    isEditingFile: { [file: string]: boolean } = {};
 
     constructor(private store: Store, public dialog: MatDialog) {
         this.translationState$.subscribe((state) => {
@@ -47,19 +49,19 @@ export class FormComponent {
         this.store.dispatch(new ChangeTranslateKey(baseKey, key, file, newValue));
     }
 
-    enableRenameKey(baseKey: string | undefined, key: string): void {
-        this.isEditingKey[baseKey + '.' + key] = true;
+    enableRenameKey(groupName: string, baseKey: string | undefined, key: string): void {
+        this.isEditingKey[groupName + '.' + baseKey + '.' + key] = true;
     }
 
-    disableRenameKey(baseKey: string | undefined, key: string): void {
-        this.isEditingKey[baseKey + '.' + key] = false;
+    disableRenameKey(groupName: string, baseKey: string | undefined, key: string): void {
+        this.isEditingKey[groupName + '.' + baseKey + '.' + key] = false;
     }
 
     renameKey(groupName: string, baseKey: string, oldKey: string, newKey: string, event: KeyboardEvent): void {
         event.stopPropagation();
         event.preventDefault();
         this.store.dispatch(new RenameTranslateKey(groupName, oldKey, newKey));
-        this.disableRenameKey(baseKey, oldKey);
+        this.disableRenameKey(groupName, baseKey, oldKey);
     }
 
     removeKey(groupName: string, key: string): void {
@@ -92,6 +94,21 @@ export class FormComponent {
                 }
             });
         });
+    }
+
+    enableRenameFile(groupName: string, file: string): void {
+        this.isEditingFile[groupName + '.' + file] = true;
+    }
+
+    disableRenameFile(groupName: string, file: string): void {
+        this.isEditingFile[groupName + '.' + file] = false;
+    }
+
+    renameFile(groupName: string, oldFile: string, newFile: string, event: KeyboardEvent): void {
+        event.stopPropagation();
+        event.preventDefault();
+        this.store.dispatch(new RenameTranslateFile(groupName, oldFile, newFile));
+        this.disableRenameFile(groupName, oldFile);
     }
 
     removeFile(groupName: string, file: string): void {

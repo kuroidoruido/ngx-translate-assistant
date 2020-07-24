@@ -13,6 +13,7 @@ import {
     AddTranslateFile,
     RenameTranslateKey,
     RemoveTranslateFile,
+    RenameTranslateFile,
 } from './translation.actions';
 
 export interface TranslationFilesInfo {
@@ -97,6 +98,21 @@ export class TranslationState implements NgxsOnInit {
                     values[action.file] = '';
                 }
                 draft.filesInfo.find((file) => file.groupName === action.groupName).files.push(action.file);
+            })
+        );
+    }
+
+    @Action(RenameTranslateFile)
+    onRenameTranslateFile(ctx: StateContext<TranslationStateModel>, action: RenameTranslateFile): void {
+        ctx.setState(
+            produce(ctx.getState(), (draft) => {
+                for (const [key, values] of Object.entries(draft.keys[action.groupName])) {
+                    values[action.newFile] = values[action.oldFile];
+                    delete values[action.oldFile];
+                }
+                const group = draft.filesInfo.find((fileInfo) => fileInfo.groupName === action.groupName);
+                group.files = group.files.filter((file) => file !== action.oldFile);
+                group.files.push(action.newFile);
             })
         );
     }

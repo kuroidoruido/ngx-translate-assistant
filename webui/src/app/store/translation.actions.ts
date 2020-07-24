@@ -27,6 +27,11 @@ export class AddTranslateFile {
     constructor(public groupName: string, public file: string) {}
 }
 
+export class RenameTranslateFile {
+    static readonly type = '[Translation] rename file';
+    constructor(public groupName: string, public oldFile: string, public newFile: string) {}
+}
+
 export class RemoveTranslateFile {
     static readonly type = '[Translation] remove file';
     constructor(public groupName: string, public file: string) {}

@@ -23,24 +23,58 @@
                                     class="cell-with-menu"
                                     *ngFor="let translationFile of translationGroup.files; trackBy: trackedByFile"
                                 >
-                                    {{ translationFile }}
-                                    <button
-                                        mat-icon-button
-                                        [matMenuTriggerFor]="menu"
-                                        [aria-label]="'Actions on ' + translationFile"
+                                    <ng-template
+                                        [ngIf]="isEditingFile[translationGroup.groupName + '.' + translationFile]"
+                                        [ngIfElse]="showFile"
                                     >
-                                        <mat-icon>more_vert</mat-icon>
-                                    </button>
-                                    <mat-menu #menu="matMenu">
+                                        <mat-form-field>
+                                            <input
+                                                matInput
+                                                type="text"
+                                                [value]="translationFile || ''"
+                                                (keydown.enter)="
+                                                    renameFile(
+                                                        translationGroup.groupName,
+                                                        translationFile,
+                                                        $event.target.value,
+                                                        $event
+                                                    )
+                                                "
+                                                (keyup.escape)="
+                                                    disableRenameFile(translationGroup.groupName, translationFile)
+                                                "
+                                            />
+                                            <mat-hint>Press enter to save, escape to cancel.</mat-hint>
+                                        </mat-form-field>
+                                    </ng-template>
+                                    <ng-template #showFile>
+                                        {{ translationFile }}
                                         <button
-                                            mat-menu-item
-                                            aria-label="Remove this translate file"
-                                            (click)="removeFile(translationGroup.groupName, translationFile)"
+                                            mat-icon-button
+                                            [matMenuTriggerFor]="menu"
+                                            [aria-label]="'Actions on ' + translationFile"
                                         >
-                                            <mat-icon color="primary">delete</mat-icon>
-                                            <span>Remove</span>
+                                            <mat-icon>more_vert</mat-icon>
                                         </button>
-                                    </mat-menu>
+                                        <mat-menu #menu="matMenu">
+                                            <button
+                                                mat-menu-item
+                                                aria-label="Rename this translate file"
+                                                (click)="enableRenameFile(translationGroup.groupName, translationFile)"
+                                            >
+                                                <mat-icon color="primary">edit</mat-icon>
+                                                <span>Rename</span>
+                                            </button>
+                                            <button
+                                                mat-menu-item
+                                                aria-label="Remove this translate file"
+                                                (click)="removeFile(translationGroup.groupName, translationFile)"
+                                            >
+                                                <mat-icon color="primary">delete</mat-icon>
+                                                <span>Remove</span>
+                                            </button>
+                                        </mat-menu>
+                                    </ng-template>
                                 </th>
                                 <th>
                                     <button
@@ -63,7 +97,15 @@
                                 <tr>
                                     <th class="cell-key cell-with-menu">
                                         <ng-template
-                                            [ngIf]="isEditingKey[translationGroup.baseKey + '.' + translateKey.key]"
+                                            [ngIf]="
+                                                isEditingKey[
+                                                    translationGroup.groupName +
+                                                        '.' +
+                                                        translationGroup.baseKey +
+                                                        '.' +
+                                                        translateKey.key
+                                                ]
+                                            "
                                             [ngIfElse]="showKey"
                                         >
                                             <mat-form-field>
@@ -81,7 +123,11 @@
                                                         )
                                                     "
                                                     (keyup.escape)="
-                                                        disableRenameKey(translationGroup.baseKey, translateKey.key)
+                                                        disableRenameKey(
+                                                            translationGroup.groupName,
+                                                            translationGroup.baseKey,
+                                                            translateKey.key
+                                                        )
                                                     "
                                                 />
                                                 <mat-hint>Press enter to save, escape to cancel.</mat-hint>
@@ -105,7 +151,11 @@
                                                     mat-menu-item
                                                     aria-label="Rename this translate key"
                                                     (click)="
-                                                        enableRenameKey(translationGroup.baseKey, translateKey.key)
+                                                        enableRenameKey(
+                                                            translationGroup.groupName,
+                                                            translationGroup.baseKey,
+                                                            translateKey.key
+                                                        )
                                                     "
                                                 >
                                                     <mat-icon color="primary">edit</mat-icon>
