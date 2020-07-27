@@ -14,16 +14,82 @@
                 </mat-form-field>
             </mat-card-content>
         </mat-card>
-        <mat-accordion
+        <form>
+            <mat-card>
+                <mat-card-title>Create group</mat-card-title>
+                <mat-card-content>
+                    <mat-form-field>
+                        <mat-label>Group name</mat-label>
+                        <input
+                            matInput
+                            placeholder="About page"
+                            type="text"
+                            [(ngModel)]="newGroupName"
+                            [ngModelOptions]="{ standalone: true }"
+                        />
+                    </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button type="reset" (click)="createGroup()">Create</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+        <mat-card
             *ngFor="let translationGroup of translationState.filesInfo; trackBy: trackedByFilesInfo"
-            class="example-headers-align"
+            class="translation-group"
         >
-            <mat-expansion-panel [expanded]="true">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        {{ translationGroup.groupName }}
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
+            <mat-card-title>
+                <mat-panel-title>
+                    <div class="card-title-with-menu">
+                        <ng-template
+                            [ngIf]="isEditingGroupName[translationGroup.groupName]"
+                            [ngIfElse]="showTranslateGroupeName"
+                        >
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    type="text"
+                                    [value]="translationGroup.groupName || ''"
+                                    (keydown.enter)="
+                                        renameGroup(translationGroup.groupName, $event.target.value, $event)
+                                    "
+                                    (keyup.escape)="disableRenameGroup(translationGroup.groupName)"
+                                />
+                                <mat-hint>Press enter to save, escape to cancel.</mat-hint>
+                            </mat-form-field>
+                        </ng-template>
+                        <ng-template #showTranslateGroupeName>
+                            <div class="text">{{ translationGroup.groupName }}</div>
+                            <button
+                                mat-icon-button
+                                [matMenuTriggerFor]="groupMenu"
+                                [aria-label]="'Actions on ' + translationGroup.groupName"
+                            >
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #groupMenu="matMenu">
+                                <button
+                                    mat-menu-item
+                                    aria-label="Rename this translate group"
+                                    (click)="enableRenameGroup(translationGroup.groupName)"
+                                >
+                                    <mat-icon color="primary">edit</mat-icon>
+                                    <span>Rename</span>
+                                </button>
+                                <button
+                                    mat-menu-item
+                                    aria-label="Remove this translate group"
+                                    (click)="removeGroup(translationGroup.groupName)"
+                                >
+                                    <mat-icon color="primary">delete</mat-icon>
+                                    <span>Remove</span>
+                                </button>
+                            </mat-menu>
+                        </ng-template>
+                    </div>
+                </mat-panel-title>
+            </mat-card-title>
+            <mat-card-content>
                 <form
                     *ngIf="newKeysForms[translationGroup.groupName]"
                     [formGroup]="newKeysForms[translationGroup.groupName]"
@@ -241,8 +307,8 @@
                         </tbody>
                     </table>
                 </form>
-            </mat-expansion-panel>
-        </mat-accordion>
+            </mat-card-content>
+        </mat-card>
     </ng-container>
     <ng-template #loading>
         <div class="message">Loading...</div>

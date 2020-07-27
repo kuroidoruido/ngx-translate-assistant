@@ -13,6 +13,9 @@ import {
     RenameTranslateKey,
     RemoveTranslateFile,
     RenameTranslateFile,
+    AddTranslationGroup,
+    RenameTranslationGroup,
+    RemoveTranslationGroup,
 } from 'src/app/store/translation.actions';
 import { TranslationState, TranslationStateModel, TranslationFilesInfo } from 'src/app/store/translation.state';
 
@@ -53,8 +56,10 @@ export class FormComponent {
         map(([state, search]) => toFilteredState(state, search))
     );
     newKeysForms: { [groupName: string]: FormGroup } = {};
-    isEditingKey: { [key: string]: boolean } = {};
+    isEditingGroupName: { [groupName: string]: boolean } = {};
     isEditingFile: { [file: string]: boolean } = {};
+    isEditingKey: { [key: string]: boolean } = {};
+    newGroupName = '';
 
     constructor(private store: Store, public dialog: MatDialog) {
         this.search$.next('');
@@ -107,7 +112,7 @@ export class FormComponent {
 
     showCreateFile(groupName: string): void {
         this.translationState$.pipe(first()).subscribe((state) => {
-            const oneFileFromGroup = state.filesInfo.find((f) => f.groupName === groupName).files[0];
+            const oneFileFromGroup = state.filesInfo.find((f) => f.groupName === groupName).files[0] || '';
             const indexOfPathSeparator = oneFileFromGroup.lastIndexOf('/');
             const file = indexOfPathSeparator === -1 ? '' : oneFileFromGroup.substring(0, indexOfPathSeparator);
             const dialogRef = this.dialog.open(AddFileDialogComponent, {
@@ -140,6 +145,29 @@ export class FormComponent {
 
     removeFile(groupName: string, file: string): void {
         this.store.dispatch(new RemoveTranslateFile(groupName, file));
+    }
+
+    createGroup(): void {
+        this.store.dispatch(new AddTranslationGroup(this.newGroupName));
+    }
+
+    enableRenameGroup(groupName: string): void {
+        this.isEditingGroupName[groupName] = true;
+    }
+
+    disableRenameGroup(groupName: string): void {
+        this.isEditingGroupName[groupName] = false;
+    }
+
+    renameGroup(oldGroupName: string, newGroupName: string, event: KeyboardEvent): void {
+        event.stopPropagation();
+        event.preventDefault();
+        this.store.dispatch(new RenameTranslationGroup(oldGroupName, newGroupName));
+        this.disableRenameGroup(oldGroupName);
+    }
+
+    removeGroup(groupName: string): void {
+        this.store.dispatch(new RemoveTranslationGroup(groupName));
     }
 
     trackedByFilesInfo(fileInfo: TranslationFilesInfo): string {

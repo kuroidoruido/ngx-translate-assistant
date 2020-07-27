@@ -40,3 +40,18 @@ export class RemoveTranslateFile {
 export class SaveTranslationState {
     static readonly type = '[Translation] save state';
 }
+
+export class AddTranslationGroup {
+    static readonly type = '[Translation] add group';
+    constructor(public groupName: string) {}
+}
+
+export class RenameTranslationGroup {
+    static readonly type = '[Translation] rename group';
+    constructor(public oldGroupName: string, public newGroupName: string) {}
+}
+
+export class RemoveTranslationGroup {
+    static readonly type = '[Translation] remove group';
+    constructor(public groupName: string) {}
+}

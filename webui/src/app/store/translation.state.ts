@@ -14,6 +14,9 @@ import {
     RenameTranslateKey,
     RemoveTranslateFile,
     RenameTranslateFile,
+    AddTranslationGroup,
+    RenameTranslationGroup,
+    RemoveTranslationGroup,
 } from './translation.actions';
 
 export interface TranslationFilesInfo {
@@ -126,6 +129,41 @@ export class TranslationState implements NgxsOnInit {
                 }
                 const group = draft.filesInfo.find((fileInfo) => fileInfo.groupName === action.groupName);
                 group.files = group.files.filter((file) => file !== action.file);
+            })
+        );
+    }
+
+    @Action(AddTranslationGroup)
+    onAddTranslationGroup(ctx: StateContext<TranslationStateModel>, action: AddTranslationGroup): void {
+        ctx.setState(
+            produce(ctx.getState(), (draft) => {
+                draft.filesInfo.push({
+                    groupName: action.groupName,
+                    files: [],
+                });
+                draft.keys[action.groupName] = {};
+            })
+        );
+    }
+
+    @Action(RenameTranslationGroup)
+    onRenameTranslationGroup(ctx: StateContext<TranslationStateModel>, action: RenameTranslationGroup): void {
+        ctx.setState(
+            produce(ctx.getState(), (draft) => {
+                const oldGroup = draft.filesInfo.find((fileInfo) => fileInfo.groupName === action.oldGroupName);
+                oldGroup.groupName = action.newGroupName;
+                draft.keys[action.newGroupName] = draft.keys[action.oldGroupName];
+                delete draft.keys[action.oldGroupName];
+            })
+        );
+    }
+
+    @Action(RemoveTranslationGroup)
+    onRemoveTranslationGroup(ctx: StateContext<TranslationStateModel>, action: RemoveTranslationGroup): void {
+        ctx.setState(
+            produce(ctx.getState(), (draft) => {
+                draft.filesInfo = draft.filesInfo.filter((fileInfo) => fileInfo.groupName !== action.groupName);
+                delete draft.keys[action.groupName];
             })
         );
     }

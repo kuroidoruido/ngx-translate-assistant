@@ -3,6 +3,20 @@
 
     mat-card {
         margin-bottom: 1rem;
+
+        &.translation-group {
+            margin-bottom: 0.5rem;
+            mat-card-title {
+                div.card-title-with-menu {
+                    width: 100%;
+                    display: flex;
+                    align-items: baseline;
+                    div.text {
+                        width: 100%;
+                    }
+                }
+            }
+        }
     }
 
     mat-form-field {
@@ -22,6 +36,7 @@
 
             &.cell-with-menu {
                 position: relative;
+                padding-right: 2em;
                 button {
                     position: absolute;
                     right: 0;
