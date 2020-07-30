@@ -15,9 +15,9 @@ jobs:
       with:
         node-version: 12.x
     - name: Install WebUI dependancies
-      run: cd webui && npm install
+      run: cd webui && npm ci
     - name: Install CLI dependancies
-      run: npm install
+      run: npm ci
     - name: build cli
       run: npm run build
     - uses: JS-DevTools/npm-publish@v1
